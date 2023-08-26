@@ -1,4 +1,4 @@
-use std::collections::{HashMap};
+use std::collections::HashMap;
 
 #[derive(Debug)]
 struct Test {
@@ -22,9 +22,7 @@ struct TestFile {
 
 impl TestFile {
     fn new() -> TestFile {
-        TestFile {
-            test_names: vec![],
-        }
+        TestFile { test_names: vec![] }
     }
 }
 
@@ -35,7 +33,9 @@ pub struct CIResult {
 
 impl CIResult {
     pub fn new() -> CIResult {
-        CIResult { tests: HashMap::new() }
+        CIResult {
+            tests: HashMap::new(),
+        }
     }
 
     pub fn insert(&mut self, file_name: String, test_name: String) {

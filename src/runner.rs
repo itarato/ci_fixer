@@ -4,6 +4,9 @@ use crate::util::*;
 use std::path::Path;
 use std::process::Command;
 
+const RAILS_BIN: &'static str = "./bin/rails";
+const CMD_TEST: &'static str = "test";
+
 pub struct Runner {
     ci_results: CIResult,
 }
@@ -15,7 +18,11 @@ impl Runner {
     }
 
     pub fn run(&mut self) {
-        let output = Command::new("./bin/rails").arg("test").arg("./test/controllers/posts_controller_test.rb").output();
+        let output = Command::new(RAILS_BIN)
+            .arg(CMD_TEST)
+            .arg("./test/controllers/posts_controller_test.rb")
+            .output();
+
         dbg!(output);
     }
 }
