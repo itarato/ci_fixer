@@ -23,10 +23,12 @@ pub struct InputBlobReader;
 impl BlobReader for InputBlobReader {
     fn read(&self) -> Result<CIResult, Error> {
         let mut buf = vec![];
+
+        println!("Insert the CI output and press ^d");
+
         let _read_len = std::io::stdin().read_to_end(&mut buf)?;
         let raw_str = String::from_utf8(buf)?;
 
-        dbg!(&raw_str);
         let mut ci_result = CIResult::new();
 
         let re = Regex::new(r"dev test ([^ ]+) -n ([^ ]+)")?;

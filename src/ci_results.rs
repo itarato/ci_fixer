@@ -1,23 +1,19 @@
 use std::collections::HashMap;
 
 #[derive(Debug)]
-struct Test {
-    name: String,
-    passing: bool,
+pub struct Test {
+    pub name: String,
 }
 
 impl Test {
     fn new(name: String) -> Test {
-        Test {
-            name,
-            passing: false,
-        }
+        Test { name }
     }
 }
 
 #[derive(Debug)]
-struct TestFile {
-    test_names: Vec<Test>,
+pub struct TestFile {
+    pub test_names: Vec<Test>,
 }
 
 impl TestFile {
@@ -28,7 +24,7 @@ impl TestFile {
 
 #[derive(Debug)]
 pub struct CIResult {
-    tests: HashMap<String, TestFile>,
+    pub tests: HashMap<String, TestFile>,
 }
 
 impl CIResult {
