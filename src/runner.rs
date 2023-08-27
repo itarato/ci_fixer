@@ -34,6 +34,10 @@ impl Runner {
             for test in &mut tests.test_names {
                 let mut skip_all_tests_in_file = false;
                 loop {
+                    println!(
+                        "\x1B[93mFile: \x1B[1m{}\x1B[0m\x1B[93m Test: \x1B[1m{}\x1B[0m",
+                        file_name, test.name
+                    );
                     match Runner::read_instruction() {
                         Err(_) => continue,
                         Ok(instruction) => match instruction {
@@ -46,7 +50,16 @@ impl Runner {
                                     .output()?;
 
                                 let status_code = output.status.code().unwrap_or(1);
-                                println!("Output: #{}", String::from_utf8(output.stdout)?);
+                                println!(
+                                    "\x1B[94mError:\x1B[0m {}",
+                                    String::from_utf8(output.stderr)?
+                                );
+                                println!("\x1B[94mCode:\x1B[0m {}", status_code);
+                                println!(
+                                    "\x1B[94mOutput:\x1B[0m {}",
+                                    String::from_utf8(output.stdout)?
+                                );
+                                std::io::stdout().flush()?;
 
                                 if status_code == 0 {
                                     break;
@@ -61,7 +74,16 @@ impl Runner {
                                     .output()?;
 
                                 let status_code = output.status.code().unwrap_or(1);
-                                println!("Output: #{}", String::from_utf8(output.stdout)?);
+                                println!(
+                                    "\x1B[94mError:\x1B[0m {}",
+                                    String::from_utf8(output.stderr)?
+                                );
+                                println!("\x1B[94mCode:\x1B[0m {}", status_code);
+                                println!(
+                                    "\x1B[94mOutput:\x1B[0m {}",
+                                    String::from_utf8(output.stdout)?
+                                );
+                                std::io::stdout().flush()?;
 
                                 if status_code == 0 {
                                     skip_all_tests_in_file = true;
@@ -90,7 +112,7 @@ impl Runner {
     }
 
     fn read_instruction() -> Result<Instruction, Error> {
-        print!("(1) This test (2) this file (3) next test (4) next file (5) abort: ");
+        println!("\x1B[95m(1)\x1B[0m This test \x1B[95m(2)\x1B[0m this file \x1B[95m(3)\x1B[0m next test \x1B[95m(4)\x1B[0m next file \x1B[95m(5)\x1B[0m abort: ");
         std::io::stdout().flush()?;
 
         let getch = Getch::new();

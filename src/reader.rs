@@ -7,9 +7,9 @@ use std::io::Read;
 /** Sample:
 
 The braced format is useful for exerting precise control over the name of the capture reference.
-dev test components/user/test/service_test.rb -n test#some_user_is__ok
+dev test test/controllers/posts_controller_test.rb -n test#some_user_is__ok
 For example, ${1}a corresponds to the capture group reference 1 followed by the letter a,
-dev test components/login/test/login_test.rb -n test#log_in_with_guest
+dev test test/models/post_test.rb -n test#log_in_with_guest
 where as $1a (as mentioned above) corresponds to the capture group reference 1a.
 
 */
